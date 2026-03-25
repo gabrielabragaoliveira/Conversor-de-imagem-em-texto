@@ -23,12 +23,12 @@ with col1:
 
 with col2:
     st.markdown("#### Opção 2: Colar")
-    # Este botão especial captura o Ctrl+V
+    # CORREÇÃO: O parâmetro correto é 'text_color' (e não 'color')
     pasted_image_data = paste_image_button(
         label="📋 Colar Imagem da Área de Transferência",
         background_color="#FF4B4B",
         hover_background_color="#D33636",
-        color="#FFFFFF",
+        text_color="#FFFFFF", 
     )
 
 # --- PROCESSAMENTO DA IMAGEM ---
@@ -39,9 +39,9 @@ if uploaded_file is not None:
     # Caso tenha feito upload
     image_to_process = Image.open(uploaded_file)
     st.image(image_to_process, caption="Imagem carregada por upload", use_container_width=True)
-elif pasted_image_data is not None:
-    # Caso tenha colado (a biblioteca já devolve o formato Pillow pronto)
-    image_to_process = pasted_image_data.image_pil
+elif pasted_image_data.image_data is not None:
+    # CORREÇÃO: O atributo correto da biblioteca é 'image_data' (e não 'image_pil')
+    image_to_process = pasted_image_data.image_data
     st.image(image_to_process, caption="Imagem colada com sucesso", use_container_width=True)
 
 # Se houver uma imagem pronta para processar
@@ -65,11 +65,11 @@ if image_to_process is not None:
 
                 REGRAS DE CONTAGEM DE SÍMBOLOS (TRAÇOS/PALITINHOS):
                 Identifique os grupos de símbolos ao lado de cada texto. Cada símbolo desenhado representa um número de acordo com esta regra estrita:
-                - 1 único traço solto (|) = 1
-                - Formato de "L" ou "Gamma" (__) (2 traços) = 2
-                - Formato de "U" ou quadrado sem o topo ou base (__) (3 traços) = 3
-                - Quadrado perfeito (__) (4 traços) = 4
-                - Quadrado com um risco diagonal ou no meio (__) (5 traços) = 5
+                - 1 único traço solto = 1
+                - Formato de "L" ou "Gamma" (2 traços) = 2
+                - Formato de "U" ou quadrado sem o topo ou base (3 traços) = 3
+                - Quadrado perfeito (4 traços) = 4
+                - Quadrado com um risco diagonal ou no meio (5 traços) = 5
 
                 Some todos os símbolos associados àquela linha de texto.
 
