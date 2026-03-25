@@ -4,7 +4,7 @@ from PIL import Image
 
 # Configuração da página da interface
 st.set_page_config(page_title="Transcritor de Anotações", page_icon="📝")
-st.title("📝 Transcritor de Anotações e Contagem")
+st.title("📝Escreve pra mim, por favor!!")
 st.write("Faça o upload ou cole (Ctrl+V) a imagem das suas anotações.")
 
 # Campo para a chave da API (para segurança, ela fica oculta)
