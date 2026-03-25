@@ -1,0 +1,1 @@
+# Conversor-de-imagem-em-texto
